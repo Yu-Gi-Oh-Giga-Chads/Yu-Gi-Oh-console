@@ -5,6 +5,12 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuGiOh!_MasterDuel", "YuGiOh!_MasterDuel\YuGiOh!_MasterDuel.csproj", "{4F466909-A6DE-4C24-8D88-14DB5C26B889}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{4DEA4E2C-872B-43AA-9990-7B5DF5FC1DBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{FAEDE630-A61F-4078-A913-1D645F89392E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{3B877B76-7E19-46D3-BB12-64F748546E8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{4F466909-A6DE-4C24-8D88-14DB5C26B889}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F466909-A6DE-4C24-8D88-14DB5C26B889}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F466909-A6DE-4C24-8D88-14DB5C26B889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEA4E2C-872B-43AA-9990-7B5DF5FC1DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEA4E2C-872B-43AA-9990-7B5DF5FC1DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEA4E2C-872B-43AA-9990-7B5DF5FC1DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEA4E2C-872B-43AA-9990-7B5DF5FC1DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAEDE630-A61F-4078-A913-1D645F89392E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAEDE630-A61F-4078-A913-1D645F89392E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAEDE630-A61F-4078-A913-1D645F89392E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAEDE630-A61F-4078-A913-1D645F89392E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B877B76-7E19-46D3-BB12-64F748546E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B877B76-7E19-46D3-BB12-64F748546E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B877B76-7E19-46D3-BB12-64F748546E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B877B76-7E19-46D3-BB12-64F748546E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
