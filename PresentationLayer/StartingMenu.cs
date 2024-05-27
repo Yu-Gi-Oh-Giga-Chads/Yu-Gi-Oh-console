@@ -24,7 +24,7 @@ namespace PresentationLayer
 ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
             
 ";
-        private string[] options = {
+        public string[] Options = {
             "Cards Collection",
             "Deck Editor",
             "Info",
@@ -35,8 +35,12 @@ namespace PresentationLayer
         public int SelectedIndex { get; set; }
         public StartingMenu()
         {
-            StartMenu = new Menu(prompt, options);
+            StartMenu = new Menu(prompt, Options);
+        }
+        public int RunMenu()
+        {
             SelectedIndex = StartMenu.Run();
+            return SelectedIndex;
         }
     }
 }
