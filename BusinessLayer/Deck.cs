@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,7 @@ namespace BusinessLayer
     public class Deck
     {
         [Key]
+        
         public int Id { get; set; }
 
         [Required]
@@ -17,13 +20,17 @@ namespace BusinessLayer
 
         [Required]
         public List<Card> Cards { get; set; }
+        public List<int> Copies { get; set; }
 
         public DateTime DateCreated { get; set; }
         public DateTime LastEdited { get; set; }
 
-        private Deck()
+        public Deck()
         {
             Cards = new List<Card>();
+            Copies = new List<int>();
+            DateCreated = DateTime.Now;
+            LastEdited = DateTime.Now;
         }
 
         public Deck(string name)

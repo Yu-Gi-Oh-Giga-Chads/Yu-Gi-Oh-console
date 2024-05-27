@@ -19,10 +19,14 @@ namespace BusinessLayer
 
         public string? Attribute { get; set; }
         public int Level { get; set; }
-        public uint ATK { get; set; }
-        public uint DEF { get; set; }
+        public int ATK { get; set; }
+        public int DEF { get; set; }
         public string? EffectText { get; set; }
+        public List<Deck> Decks { get; set; }
 
-        public Card() { }
+        public Card() 
+        {
+            Decks = new List<Deck>();
+        }
     }
 }
