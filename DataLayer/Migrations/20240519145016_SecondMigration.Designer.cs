@@ -4,6 +4,7 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(YuGiOhDbContext))]
-    partial class YuGiOhDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240519145016_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,9 @@ namespace DataLayer.Migrations
                     b.Property<int>("DEF")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DeckId")
+                        .HasColumnType("int");
+
                     b.Property<string>("EffectText")
                         .HasColumnType("nvarchar(max)");
 
@@ -60,6 +66,8 @@ namespace DataLayer.Migrations
 
                     b.HasKey("CardId");
 
+                    b.HasIndex("DeckId");
+
                     b.ToTable("Cards");
                 });
 
@@ -70,10 +78,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Copies")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -90,34 +94,16 @@ namespace DataLayer.Migrations
                     b.ToTable("Decks");
                 });
 
-            modelBuilder.Entity("CardDeck", b =>
+            modelBuilder.Entity("BusinessLayer.Card", b =>
                 {
-                    b.Property<int>("CardsCardId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DecksId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CardsCardId", "DecksId");
-
-                    b.HasIndex("DecksId");
-
-                    b.ToTable("CardDeck");
+                    b.HasOne("BusinessLayer.Deck", null)
+                        .WithMany("Cards")
+                        .HasForeignKey("DeckId");
                 });
 
-            modelBuilder.Entity("CardDeck", b =>
+            modelBuilder.Entity("BusinessLayer.Deck", b =>
                 {
-                    b.HasOne("BusinessLayer.Card", null)
-                        .WithMany()
-                        .HasForeignKey("CardsCardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BusinessLayer.Deck", null)
-                        .WithMany()
-                        .HasForeignKey("DecksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }
