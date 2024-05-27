@@ -12,6 +12,7 @@ namespace DataLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer(@"Server=DANI\SQLEXPRESS;Database=YuGiOhCardDatabase;Trusted_Connection=True;TrustServerCertificate=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,5 +26,28 @@ namespace DataLayer
 
         public DbSet<Card> Cards { get; set; }
         public DbSet<Deck> Decks { get; set; }
+
+        public override int SaveChanges()
+        {
+            using (var transaction = Database.BeginTransaction())
+            {
+                try
+                {
+                    Database.ExecuteSqlRaw("SET IDENTITY_INSERT Decks ON");
+
+                    var result = base.SaveChanges();
+
+                    Database.ExecuteSqlRaw("SET IDENTITY_INSERT Decks OFF");
+
+                    transaction.Commit();
+                    return result;
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
     }
 }

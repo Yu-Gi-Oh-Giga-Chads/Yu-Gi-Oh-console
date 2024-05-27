@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,14 @@ namespace DataLayer
             try
             {
                 IQueryable<Card> query = _cardsDbContext.Cards;
+                if (useNavigational)
+                {
+                    query.Include(c => c.Decks);
+                }
+                if (isReadonly)
+                {
+                    query.AsNoTrackingWithIdentityResolution();
+                }
                 return query.SingleOrDefault(c => c.Id == key);
             }
             catch (Exception ex)
@@ -46,6 +55,14 @@ namespace DataLayer
             try
             {
                 IQueryable<Card> query = _cardsDbContext.Cards;
+                if (useNavigational)
+                {
+                    query.Include(c => c.Decks);
+                }
+                if (isReadonly)
+                {
+                    query.AsNoTrackingWithIdentityResolution();
+                }
                 return query.ToList();
             }
             catch (Exception ex)
@@ -64,6 +81,23 @@ namespace DataLayer
                     throw new Exception($"Card with id = {entity.Id} does not exist");
                 }
                 _cardsDbContext.Cards.Entry(card).CurrentValues.SetValues(entity);
+                if (useNavigational)
+                {
+                    List<Deck> decks = new List<Deck>();
+                    foreach(var item in entity.Decks)
+                    {
+                        Deck deck = _cardsDbContext.Decks.Find(item.Id);
+                        if(deck is null)
+                        {
+                            decks.Add(item);
+                        }
+                        else
+                        {
+                            decks.Add(deck);
+                        }
+                    }
+                    card.Decks = decks;
+                }
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)
