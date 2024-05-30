@@ -59,6 +59,7 @@ and be one step closer to being the King of Games!
 Use Up and Dwon arrows to go through the menus, then Enter to go to the desired menu.
 For more information call us at: 0884230196";
             Menu infoMenu = new Menu(prompt, ["Back"]);
+            infoMenu.Run();
         }
         public void Exit()
         {
