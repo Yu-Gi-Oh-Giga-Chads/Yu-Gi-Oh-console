@@ -12,6 +12,7 @@ namespace YuGiOh__MasterDuel
     {
         static void Main(string[] args)
         {
+            //Start the game
             MainController main = new MainController();
             main.Start();
         }
