@@ -65,7 +65,7 @@ namespace ServiceLayer
                 input = input.Substring(0, input.Length - 1);
                 Console.Write("\b \b");
             }
-            else if(key.Key == ConsoleKey.Enter && Input.ToLower().Equals("exit"))
+            else if(key.Key == ConsoleKey.Enter && (Input.ToLower().Equals("exit") || Input.ToLower().Equals("back")))
             {
                 Console.Clear();
                 return;
